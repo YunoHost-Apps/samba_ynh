@@ -62,9 +62,6 @@ setfacl -R -m g:all_users:rwx,d:g:all_users:rwx $datadir/share
 ynh_script_progression --message="Adding a configuration file..." --time --weight=1
 
 ynh_add_config --template="smb.conf" --destination="/etc/samba/smb.conf"
-ynh_add_config --template="post_user_create" --destination="/etc/yunohost/hooks.d/post_user_create/$app"
-ynh_add_config --template="post_user_delete" --destination="/etc/yunohost/hooks.d/post_user_delete/$app"
-ynh_add_config --template="post_user_update" --destination="/etc/yunohost/hooks.d/post_user_update/$app"
 
 #================================================
 # INTEGRATE SERVICE IN YUNOHOST
