@@ -15,7 +15,7 @@ name = "shared directory"
 	ask = "Advanced parameter"
 	type = "boolean"
 	
-[main.main.readonly]
+[main.main.readonly_dir]
 	ask = "List of read only directory"
 	type = "tags"
 	visible = "advanced"
