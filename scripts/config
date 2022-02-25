@@ -18,6 +18,8 @@ source /usr/share/yunohost/helpers
 
 ynh_abort_if_errors
 
+datadir=$(ynh_app_setting_get --app=$app --key=datadir)
+
 #=================================================
 # SPECIFIC GETTERS FOR TOML SHORT KEY
 #=================================================
@@ -36,28 +38,38 @@ set__directories() {
     #---------------------------------------------
     # IMPORTANT: setter are trigger only if a change is detected
     #---------------------------------------------
-    for directory in $(echo $directories | sed "s/,/ /"); do
-	# Create permission if needed
-        if ! ynh_permission_exists --permission=samba.${directory} ; then 
-            ynh_permission_create --permission="samba.${directory}" --allowed=all_users --show_tile=false
+    for directory in $(echo $directories | sed "s/,/ /g"); do
+
+	# Create yunohost permission
+        if ! ynh_permission_exists --permission=$directory ; then 
+            ynh_permission_create --permission="$directory" --allowed=all_users --show_tile=false
         fi
+	
+	# Create the directory
+	mkdir -p $datadir/$directory
+
+	chmod 750 "$datadir/$directory"
+	chmod -R o-rwx "$datadir/$directory"
+	chown -R root:root "$datadir/$directory"
+	setfacl -R -m g:samba.$directory:rwx,d:g:samba.$directory:rwx $datadir/$directory
+
 
 	# Add the configuration in /etc/samba/smb.conf if needed
-	cat > /etc/samba/smb.conf.d/${directory}.conf <<EOF
-[${directory}]
-   comment = ${directory}
+	cat > /etc/samba/smb.conf.d/$directory.conf <<END
+[$directory]
+   comment = $directory
    read only = no
-   path = /home/yunohost.app/samba/${directory}
+   path = /home/yunohost.app/samba/$directory
    guest ok = no
    browsable = yes
-   valid users = @samba.${directory}
+   valid users = @samba.$directory
    create mask = 0660
    directory mask = 770
    vfs objects = dfs_samba4 acl_xattr recycle
    recycle:repository = .recycle
    recycle:keeptree = yes
    recycle:versions = yes
-EOF  
+END
 
     done
 
@@ -70,9 +82,9 @@ EOF
 EOF
     cat /etc/samba/smb.conf.d/*.conf >> /etc/samba/smb.conf
     
-    #---------------------------------------------
-    # IMPORTANT: to be able to upgrade properly, you have to saved the value in settings too
-    #---------------------------------------------
+#---------------------------------------------
+# IMPORTANT: to be able to upgrade properly, you have to saved the value in settings too
+#---------------------------------------------
     ynh_app_setting_set $app directories $directories
 }
 
