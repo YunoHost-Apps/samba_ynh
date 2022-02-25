@@ -71,7 +71,11 @@ setfacl -R -m g:all_users:rwx,d:g:all_users:rwx $datadir/share
 #=================================================
 ynh_script_progression --message="Adding a configuration file..." --time --weight=1
 
-ynh_add_config --template="smb.conf" --destination="/etc/samba/smb.conf"
+mkdir -p /etc/samba/smb.conf.d
+ynh_add_config --template="global-smb.conf" --destination="/etc/samba/smb.conf.d/0-global.conf"
+ynh_add_config --template="shared-smb.conf" --destination="/etc/samba/smb.conf.d/shared.conf"
+
+cat /etc/samba/smb.conf.d/*.conf > /etc/samba/smb.conf
 
 #================================================
 # INTEGRATE SERVICE IN YUNOHOST

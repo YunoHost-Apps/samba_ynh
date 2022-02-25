@@ -2,25 +2,28 @@ version = "1.0"
 
 [main]
 name = "shared directory"
+services = ["samba"]
 
 [main.main]
 	name = ""
 	optional = true
 
-[main.main.directory]
-	ask = "List of share directory"
+[main.main.directories]
+	ask = "List of shared directories"
 	type = "tags"
+	pattern.regexp = '^[a-z0-9_]+$'
+        pattern.error = "Directories names can caontain lowercase alphabetic characters, numbers and underscore."
 
 [main.main.advanced]
 	ask = "Advanced parameter"
 	type = "boolean"
 	
 [main.main.readonly_dir]
-	ask = "List of read only directory"
+	ask = "List of readonly directories"
 	type = "tags"
 	visible = "advanced"
 
 [main.main.unbrowseable]
-	ask = "List of invisible directory"
+	ask = "List of invisible directories"
 	type = "tags"
 	visible = "advanced"
