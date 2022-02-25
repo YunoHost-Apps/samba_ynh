@@ -1,0 +1,26 @@
+version = "1.0"
+
+[main]
+name = "shared directory"
+
+[main.main]
+	name = ""
+	optional = true
+
+[main.main.directory]
+	ask = "List of share directory"
+	type = "tags"
+
+[main.main.advanced]
+	ask = "Advanced parameter"
+	type = "boolean"
+	
+[main.main.readonly]
+	ask = "List of read only directory"
+	type = "tags"
+	visible = "advanced"
+
+[main.main.unbrowseable]
+	ask = "List of invisible directory"
+	type = "tags"
+	visible = "advanced"
