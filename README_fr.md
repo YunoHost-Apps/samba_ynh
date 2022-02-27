@@ -22,7 +22,7 @@ Some long and extensive description of what the app is and does, lorem ipsum dol
 - Excepteur sint occaecat cupidatat non proident, sunt in culpa."
 
 
-**Version incluse :** 1.0~ynh1
+**Version incluse :** 4.9.5~ynh1
 
 **Démo :** https://demo.example.com
 
@@ -47,7 +47,7 @@ Some long and extensive description of what the app is and does, lorem ipsum dol
 
 ## Documentations et ressources
 
-* Site officiel de l'app : https://example.com
+* Site officiel de l'app : https://www.samba.org/
 * Documentation officielle utilisateur : https://yunohost.org/apps
 * Documentation officielle de l'admin : https://yunohost.org/packaging_apps
 * Dépôt de code officiel de l'app : https://some.forge.com/example/example
