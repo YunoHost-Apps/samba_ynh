@@ -16,9 +16,8 @@ ynh_script_progression --message="Loading installation settings..." --time --wei
 
 app=$YNH_APP_INSTANCE_NAME
 
-domain=$(ynh_app_setting_get --app=$app --key=domain)
-final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 datadir=$(ynh_app_setting_get --app=$app --key=datadir)
+final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 
 #=================================================
 # STANDARD REMOVE
@@ -30,7 +29,7 @@ datadir=$(ynh_app_setting_get --app=$app --key=datadir)
 if ynh_exec_warn_less yunohost service status $app >/dev/null
 then
 	ynh_script_progression --message="Removing $app service integration..." --time --weight=1
-	yunohost service remove $app
+	yunohost service remove smbd
 fi
 
 #=================================================
@@ -50,6 +49,7 @@ if [ "${YNH_APP_PURGE:-0}" -eq 1 ]
 then
 	ynh_script_progression --message="Removing app data directory..." --time --weight=1
 	ynh_secure_remove --file="$datadir"
+	ynh_secure_remove --file="$final_path"
 fi
 
 #=================================================
