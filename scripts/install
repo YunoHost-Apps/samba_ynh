@@ -20,30 +20,29 @@ ynh_abort_if_errors
 # RETRIEVE ARGUMENTS FROM THE MANIFEST
 #=================================================
 
-domain=$YNH_APP_ARG_DOMAIN
-path_url=$YNH_APP_ARG_PATH
-admin=$YNH_APP_ARG_ADMIN
-
 app=$YNH_APP_INSTANCE_NAME
-
-#=================================================
-# CHECK IF THE APP CAN BE INSTALLED WITH THESE ARGS
-#=================================================
-ynh_script_progression --message="Validating installation parameters..." --time --weight=1
-
-final_path=/var/www/$app
-test ! -e "$final_path" || ynh_die --message="This path already contains a folder"
-
-# Register (book) web path
-ynh_webpath_register --app=$app --domain=$domain --path_url=$path_url
 
 #=================================================
 # STORE SETTINGS FROM MANIFEST
 #=================================================
 ynh_script_progression --message="Storing installation settings..." --time --weight=1
 
-ynh_app_setting_set --app=$app --key=domain --value=$domain
-ynh_app_setting_set --app=$app --key=path --value=$path_url
+#=================================================
+# STORE SETTINGS FROM MANIFEST
+#=================================================
+ynh_script_progression --message="Storing installation settings..." --time --weight=1
+
+ynh_app_setting_set --app=$app --key=directories --value=shared
+ynh_app_setting_set --app=$app --key=advanced --value=0
+ynh_app_setting_set --app=$app --key=readonly_dir --value=''
+ynh_app_setting_set --app=$app --key=unbrowseable --value=''
+
+#=================================================
+# FIND AND OPEN A PORT
+#=================================================
+
+ynh_exec_warn_less yunohost firewall allow Both 445 --no-upnp
+
 
 #=================================================
 # INSTALL DEPENDENCIES
@@ -57,21 +56,32 @@ ynh_install_app_dependencies $pkg_dependencies
 #=================================================
 ynh_script_progression --message="Creating a data directory..." --time --weight=1
 
-datadir=/home/yunohost.app/$app
-ynh_app_setting_set --app=$app --key=datadir --value=$datadir
+datadir=/home/yunohost.app/samba
+ynh_app_setting_set --app=samba --key=datadir --value=$datadir
 
-mkdir -p $datadir
+mkdir -p $datadir/share
 
-chmod 750 "$datadir"
-chmod -R o-rwx "$datadir"
-chown -R $app:www-data "$datadir"
+chmod 750 "$datadir/share"
+chmod -R o-rwx "$datadir/share"
+chown -R root:root "$datadir/share"
+setfacl -R -m g:all_users:rwx,d:g:all_users:rwx $datadir/share
 
 #=================================================
 # ADD A CONFIGURATION
 #=================================================
 ynh_script_progression --message="Adding a configuration file..." --time --weight=1
 
-echo -e "[sambashare]\ncomment = YunoHost\npath = ${datadir}\nread only = no\nbrowsable = yes" >> /etc/samba/smb.conf
+mkdir -p /etc/samba/smb.conf.d
+ynh_add_config --template="global-smb.conf" --destination="/etc/samba/smb.conf.d/0-global.conf"
+ynh_add_config --template="shared-smb.conf" --destination="/etc/samba/smb.conf.d/shared.conf"
+
+cat /etc/samba/smb.conf.d/*.conf > /etc/samba/smb.conf
+
+#================================================
+# INTEGRATE SERVICE IN YUNOHOST
+#================================================
+
+yunohost service add smbd --description="Samba service" --log="/var/log/smbd/smbd.log"
 
 #=================================================
 # START SYSTEMD SERVICE
@@ -80,6 +90,12 @@ ynh_script_progression --message="Starting a systemd service..." --time --weight
 
 # Start a systemd service
 ynh_systemd_action --service_name=smbd --action="start"
+
+#=================================================
+# SETUP SSOWAT
+#=================================================
+
+ynh_permission_create --permission="share" --allowed=all_users
 
 #=================================================
 # END OF SCRIPT
