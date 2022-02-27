@@ -22,9 +22,9 @@ Some long and extensive description of what the app is and does, lorem ipsum dol
 - Excepteur sint occaecat cupidatat non proident, sunt in culpa."
 
 
-**Version incluse :** 4.9.5~ynh1
+**Version incluse :** 4.9.5~ynh2
 
-**Démo :** https://demo.example.com
+
 
 ## Captures d'écran
 
@@ -48,9 +48,9 @@ Some long and extensive description of what the app is and does, lorem ipsum dol
 ## Documentations et ressources
 
 * Site officiel de l'app : https://www.samba.org/
-* Documentation officielle utilisateur : https://yunohost.org/apps
-* Documentation officielle de l'admin : https://yunohost.org/packaging_apps
-* Dépôt de code officiel de l'app : https://some.forge.com/example/example
+* Documentation officielle utilisateur : https://yunohost.org/app_samba
+* Documentation officielle de l'admin : https://www.samba.org/samba/docs/
+* Dépôt de code officiel de l'app : https://git.samba.org/?p=samba.git;a=summary
 * Documentation YunoHost pour cette app : https://yunohost.org/app_samba
 * Signaler un bug : https://github.com/YunoHost-Apps/samba_ynh/issues
 
