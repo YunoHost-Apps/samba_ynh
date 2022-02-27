@@ -73,7 +73,7 @@ ynh_script_progression --message="Adding a configuration file..." --time --weigh
 
 mkdir -p /etc/samba/smb.conf.d
 ynh_add_config --template="global-smb.conf" --destination="/etc/samba/smb.conf.d/0-global.conf"
-ynh_add_config --template="shared-smb.conf" --destination="/etc/samba/smb.conf.d/shared.conf"
+ynh_add_config --template="shared-smb.conf" --destination="/etc/samba/smb.conf.d/share.conf"
 
 cat /etc/samba/smb.conf.d/*.conf > /etc/samba/smb.conf
 
