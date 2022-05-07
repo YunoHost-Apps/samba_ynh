@@ -33,12 +33,12 @@ test $warning = "1" || ynh_die --message="You should validate the warning"
 #=================================================
 # STORE SETTINGS FROM MANIFEST
 #=================================================
-ynh_script_progression --message="Storing installation settings..." --time --weight=1
+ynh_script_progression --message="Storing installation settings..." --weight=1
 
 #=================================================
 # STORE SETTINGS FROM MANIFEST
 #=================================================
-ynh_script_progression --message="Storing installation settings..." --time --weight=1
+ynh_script_progression --message="Storing installation settings..." --weight=1
 
 ynh_app_setting_set --app=$app --key=directories --value=shared
 ynh_app_setting_set --app=$app --key=advanced --value=0
@@ -56,7 +56,7 @@ ynh_exec_warn_less yunohost firewall allow Both 445 --no-upnp
 #=================================================
 # INSTALL DEPENDENCIES
 #=================================================
-ynh_script_progression --message="Installing dependencies..." --time --weight=1
+ynh_script_progression --message="Installing dependencies..." --weight=10
 
 ynh_install_app_dependencies $pkg_dependencies
 
@@ -69,7 +69,7 @@ ynh_permission_create --permission="share" --allowed=all_users
 #=================================================
 # CREATE DATA DIRECTORY
 #=================================================
-ynh_script_progression --message="Creating a data directory..." --time --weight=1
+ynh_script_progression --message="Creating a data directory..." --weight=1
 
 datadir=/home/yunohost.app/samba
 ynh_app_setting_set --app=samba --key=datadir --value=$datadir
@@ -84,7 +84,7 @@ setfacl -R -m g:samba.share:rwx,d:g:samba.share:rwx $datadir/share
 #=================================================
 # ADD A CONFIGURATION
 #=================================================
-ynh_script_progression --message="Adding a configuration file..." --time --weight=1
+ynh_script_progression --message="Adding a configuration file..." --weight=1
 
 mkdir -p $final_path/smb.conf.d
 ynh_add_config --template="global-smb.conf" --destination="$final_path/smb.conf.d/0-global.conf"
@@ -108,7 +108,7 @@ yunohost service add smbd --description="Samba service" --log="/var/log/smbd/smb
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================
-ynh_script_progression --message="Starting a systemd service..." --time --weight=1
+ynh_script_progression --message="Starting a systemd service..." --weight=10
 
 # Start a systemd service
 ynh_systemd_action --service_name=smbd --action="start"
@@ -118,4 +118,4 @@ ynh_systemd_action --service_name=smbd --action="start"
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression --message="Installation of $app completed" --time --last
+ynh_script_progression --message="Installation of $app completed" --last

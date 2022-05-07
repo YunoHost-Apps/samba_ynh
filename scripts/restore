@@ -20,7 +20,7 @@ ynh_abort_if_errors
 #=================================================
 # LOAD SETTINGS
 #=================================================
-ynh_script_progression --message="Loading installation settings..." --time --weight=1
+ynh_script_progression --message="Loading installation settings..." --weight=1
 
 app=$YNH_APP_INSTANCE_NAME
 
@@ -34,12 +34,12 @@ unbrowseable=$(ynh_app_setting_get --app=$app --key=unbrowseable)
 #=================================================
 # CHECK IF THE APP CAN BE RESTORED
 #=================================================
-ynh_script_progression --message="Validating restoration parameters..." --time --weight=1
+ynh_script_progression --message="Validating restoration parameters..." --weight=1
 
 #=================================================
 # FIND AND OPEN A PORT
 #=================================================
-ynh_script_progression --message="Open 445 port..." --time --weight=1
+ynh_script_progression --message="Open 445 port..." --weight=1
 
 ynh_exec_warn_less yunohost firewall allow Both 445 --no-upnp
 
@@ -47,7 +47,7 @@ ynh_exec_warn_less yunohost firewall allow Both 445 --no-upnp
 #=================================================
 # RESTORE THE DATA DIRECTORY
 #=================================================
-ynh_script_progression --message="Restoring the data directory..." --time --weight=1
+ynh_script_progression --message="Restoring the data directory..." --weight=1
 
 ynh_restore_file --origin_path="$datadir" --not_mandatory
 
@@ -64,7 +64,7 @@ ynh_restore_file --origin_path="$final_path" --not_mandatory
 #=================================================
 # REINSTALL DEPENDENCIES
 #=================================================
-ynh_script_progression --message="Reinstalling dependencies..." --time --weight=1
+ynh_script_progression --message="Reinstalling dependencies..." --weight=1
 
 # Define and install dependencies
 ynh_install_app_dependencies $pkg_dependencies
@@ -78,7 +78,7 @@ yunohost service add smbd --description="Samba service" --log="/var/log/smbd/smb
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================
-ynh_script_progression --message="Starting a systemd service..." --time --weight=1
+ynh_script_progression --message="Starting a systemd service..." --weight=10
 
 ynh_systemd_action --service_name=smbd --action="start"
 
@@ -88,4 +88,4 @@ ynh_systemd_action --service_name=smbd --action="start"
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression --message="Restoration completed for $app" --time --last
+ynh_script_progression --message="Restoration completed for $app" --last
