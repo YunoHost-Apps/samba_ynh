@@ -1,0 +1,30 @@
+version = "1.0"
+
+[main]
+name = "shared directory"
+services = ["samba"]
+
+[main.main]
+	name = ""
+	optional = true
+
+[main.main.directories]
+	ask = "List of shared directories"
+	type = "tags"
+	pattern.regexp = '^[a-z0-9_]+$'
+    pattern.error = "Directories names can caontain lowercase alphabetic characters, numbers and underscore."
+    help = "You will be able to define which user can access to each directory on [Manage groups and permissions page](/yunohost/admin/#/groups)."
+
+[main.main.advanced]
+	ask = "Advanced parameter"
+	type = "boolean"
+	
+[main.main.readonly_dir]
+	ask = "List of readonly directories"
+	type = "tags"
+	visible = "advanced"
+
+[main.main.unbrowseable]
+	ask = "List of invisible directories"
+	type = "tags"
+	visible = "advanced"

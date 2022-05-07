@@ -12,13 +12,12 @@ source /usr/share/yunohost/helpers
 #=================================================
 # LOAD SETTINGS
 #=================================================
-ynh_script_progression --message="Loading installation settings..." --time --weight=1
+ynh_script_progression --message="Loading installation settings..." --weight=1
 
 app=$YNH_APP_INSTANCE_NAME
 
-domain=$(ynh_app_setting_get --app=$app --key=domain)
-final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 datadir=$(ynh_app_setting_get --app=$app --key=datadir)
+final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 
 #=================================================
 # STANDARD REMOVE
@@ -29,14 +28,14 @@ datadir=$(ynh_app_setting_get --app=$app --key=datadir)
 # Remove the service from the list of services known by YunoHost (added from `yunohost service add`)
 if ynh_exec_warn_less yunohost service status $app >/dev/null
 then
-	ynh_script_progression --message="Removing $app service integration..." --time --weight=1
-	yunohost service remove $app
+	ynh_script_progression --message="Removing $app service integration..." --weight=1
+	yunohost service remove smbd
 fi
 
 #=================================================
 # REMOVE DEPENDENCIES
 #=================================================
-ynh_script_progression --message="Removing dependencies..." --time --weight=1
+ynh_script_progression --message="Removing dependencies..." --weight=2
 
 # Remove metapackage and its dependencies
 ynh_remove_app_dependencies
@@ -48,12 +47,13 @@ ynh_remove_app_dependencies
 # Remove the data directory if --purge option is used
 if [ "${YNH_APP_PURGE:-0}" -eq 1 ]
 then
-	ynh_script_progression --message="Removing app data directory..." --time --weight=1
+	ynh_script_progression --message="Removing app data directory..." --weight=10
 	ynh_secure_remove --file="$datadir"
+	ynh_secure_remove --file="$final_path"
 fi
 
 #=================================================
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression --message="Removal of $app completed" --time --last
+ynh_script_progression --message="Removal of $app completed" --last

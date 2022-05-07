@@ -15,46 +15,29 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 
 ## Overview
 
-Some long and extensive description of what the app is and does, lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+This package allows you to create directories reachable on a private network.
 
 ### Features
 
-- Ut enim ad minim veniam, quis nostrud exercitation ullamco ;
-- Laboris nisi ut aliquip ex ea commodo consequat ;
-- Duis aute irure dolor in reprehenderit in voluptate ;
-- Velit esse cillum dolore eu fugiat nulla pariatur ;
-- Excepteur sint occaecat cupidatat non proident, sunt in culpa."
+- Create and name your directories;
+- Configure permissions for your directories thanks to the yunohost permission view;
+- Define readonly directories
 
 
-**Shipped version:** 1.0~ynh1
+**Shipped version:** 4.9.5~ynh2
 
-**Demo:** https://demo.example.com
+
 
 ## Screenshots
 
 ![](./doc/screenshots/example.jpg)
 
-## Disclaimers / important information
-
-* Any known limitations, constrains or stuff not working, such as (but not limited to):
-    * requiring a full dedicated domain ?
-    * architectures not supported ?
-    * not-working single-sign on or LDAP integration ?
-    * the app requires an important amount of RAM / disk / .. to install or to work properly
-    * etc...
-
-* Other infos that people should be aware of, such as:
-    * any specific step to perform after installing (such as manually finishing the install, specific admin credentials, ...)
-    * how to configure / administrate the application if it ain't obvious
-    * upgrade process / specificities / things to be aware of ?
-    * security considerations ?
-
 ## Documentation and resources
 
-* Official app website: https://example.com
-* Official user documentation: https://yunohost.org/apps
-* Official admin documentation: https://yunohost.org/packaging_apps
-* Upstream app code repository: https://some.forge.com/example/example
+* Official app website: https://www.samba.org/
+* Official user documentation: https://yunohost.org/app_samba
+* Official admin documentation: https://www.samba.org/samba/docs/
+* Upstream app code repository: https://git.samba.org/?p=samba.git;a=summary
 * YunoHost documentation for this app: https://yunohost.org/app_samba
 * Report a bug: https://github.com/YunoHost-Apps/samba_ynh/issues
 

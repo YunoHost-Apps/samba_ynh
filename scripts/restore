@@ -20,25 +20,34 @@ ynh_abort_if_errors
 #=================================================
 # LOAD SETTINGS
 #=================================================
-ynh_script_progression --message="Loading installation settings..." --time --weight=1
+ynh_script_progression --message="Loading installation settings..." --weight=1
 
 app=$YNH_APP_INSTANCE_NAME
 
-domain=$(ynh_app_setting_get --app=$app --key=domain)
-path_url=$(ynh_app_setting_get --app=$app --key=path)
+final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 datadir=$(ynh_app_setting_get --app=$app --key=datadir)
+directories=$(ynh_app_setting_get --app=$app --key=directories)
+advanced=$(ynh_app_setting_get --app=$app --key=advanced)
+readonly_dir=$(ynh_app_setting_get --app=$app --key=readonly_dir)
+unbrowseable=$(ynh_app_setting_get --app=$app --key=unbrowseable)
 
 #=================================================
 # CHECK IF THE APP CAN BE RESTORED
 #=================================================
-ynh_script_progression --message="Validating restoration parameters..." --time --weight=1
+ynh_script_progression --message="Validating restoration parameters..." --weight=1
 
-test ! -d $final_path || ynh_die --message="There is already a directory: $final_path "
+#=================================================
+# FIND AND OPEN A PORT
+#=================================================
+ynh_script_progression --message="Open 445 port..." --weight=1
+
+ynh_exec_warn_less yunohost firewall allow Both 445 --no-upnp
+
 
 #=================================================
 # RESTORE THE DATA DIRECTORY
 #=================================================
-ynh_script_progression --message="Restoring the data directory..." --time --weight=1
+ynh_script_progression --message="Restoring the data directory..." --weight=1
 
 ynh_restore_file --origin_path="$datadir" --not_mandatory
 
@@ -46,44 +55,38 @@ mkdir -p $datadir
 
 chmod 750 "$datadir"
 chmod -R o-rwx "$datadir"
-chown -R $app:www-data "$datadir"
+chown -R root:root "$datadir"
+
+ynh_restore_file --origin_path="$final_path" --not_mandatory
 
 #=================================================
 # SPECIFIC RESTORATION
 #=================================================
 # REINSTALL DEPENDENCIES
 #=================================================
-ynh_script_progression --message="Reinstalling dependencies..." --time --weight=1
+ynh_script_progression --message="Reinstalling dependencies..." --weight=1
 
 # Define and install dependencies
 ynh_install_app_dependencies $pkg_dependencies
 
-#=================================================
-# RESTORE SYSTEMD
-#=================================================
-ynh_script_progression --message="Restoring the systemd configuration..." --time --weight=1
+#================================================
+# INTEGRATE SERVICE IN YUNOHOST
+#================================================
+ynh_script_progression --message="Integrating service in YunoHost..." --weight=1
 
-ynh_restore_file --origin_path="/etc/systemd/system/$app.service"
-systemctl enable $app.service --quiet
+yunohost service add smbd --description="Samba service" --log="/var/log/smbd/smbd.log"
 
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================
-ynh_script_progression --message="Starting a systemd service..." --time --weight=1
+ynh_script_progression --message="Starting a systemd service..." --weight=10
 
 ynh_systemd_action --service_name=smbd --action="start"
 
 #=================================================
 # GENERIC FINALIZATION
 #=================================================
-# RELOAD NGINX AND PHP-FPM
-#=================================================
-ynh_script_progression --message="Reloading NGINX web server..." --time --weight=1
-
-ynh_systemd_action --service_name=nginx --action=reload
-
-#=================================================
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression --message="Restoration completed for $app" --time --last
+ynh_script_progression --message="Restoration completed for $app" --last
