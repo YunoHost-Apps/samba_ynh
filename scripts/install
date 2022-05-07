@@ -102,6 +102,7 @@ cat $final_path/smb.conf.d/*.conf >> $final_path/smb.conf
 #================================================
 # INTEGRATE SERVICE IN YUNOHOST
 #================================================
+ynh_script_progression --message="Integrating service in YunoHost..." --weight=1
 
 yunohost service add smbd --description="Samba service" --log="/var/log/smbd/smbd.log"
 
