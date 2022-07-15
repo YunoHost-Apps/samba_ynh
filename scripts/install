@@ -22,15 +22,12 @@ ynh_abort_if_errors
 
 app=$YNH_APP_INSTANCE_NAME
 
-warning=$YNH_APP_ARG_WARNING
 #=================================================
 # CHECK IF THE APP CAN BE INSTALLED WITH THESE ARGS
 #=================================================
 ynh_script_progression --message="Validating installation parameters..."
 
 final_path="/etc/samba"
-
-test $warning = "1" || ynh_die --message="You should validate the warning"
 
 #=================================================
 # STORE SETTINGS FROM MANIFEST
