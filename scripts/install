@@ -71,7 +71,7 @@ mkdir -p $datadir/share
 chmod 750 "$datadir/share"
 chmod -R o-rwx "$datadir/share"
 chown -R root:root "$datadir/share"
-setfacl -R -m g:samba.share:rwx,d:g:samba.share:rwx $datadir/share
+setfacl -R -m g:sambashare:rwx,d:g:sambashare:rwx $datadir/share
 
 #=================================================
 # ADD A CONFIGURATION
