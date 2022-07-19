@@ -6,7 +6,7 @@
         "en": "App to share directories on your private network thanks to SMB protocol",
         "fr": "Apllication pour partage des dossiers sur un reseaux privé via le protocole SMB"
     },
-    "version": "4.9.5~ynh2",
+    "version": "4.9.5~ynh3",
     "url": "https://www.samba.org/",
     "upstream": {
         "license": "GPL-3.0-only",
@@ -26,11 +26,11 @@
     "multi_instance": false,
     "services": [],
     "arguments": {
-        "install" : [
+        "install": [
             {
                 "name": "warning",
-                "type": "boolean",
-                "help": {
+                "type": "display_text",
+                "ask": {
                     "en": "I understand this app is only for private network purpose and i should not install it on a server with a public IP or open the 445 port on my home router.",
                     "fr": "Je comprends que cette application est uniquement à des fins de réseau privé et je ne dois pas l'installer sur un serveur avec une adresse IP publique ou ouvrir le port 445 sur mon routeur."
                 }
