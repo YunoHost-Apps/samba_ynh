@@ -59,6 +59,14 @@ ynh_install_app_dependencies $pkg_dependencies
 #=================================================
 # SPECIFIC SETUP
 #=================================================
+# SETUP SSOWAT 
+#=================================================
+ynh_script_progression --message="Configuring permissions..."
+
+# We define the permission in advance to be able to use the group
+# in unix permission
+ynh_permission_create --permission="share" --allowed=all_users
+#=================================================
 # CREATE DATA DIRECTORY
 #=================================================
 ynh_script_progression --message="Creating a data directory..." --weight=1
