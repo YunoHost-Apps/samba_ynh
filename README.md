@@ -25,6 +25,7 @@ This package allows you to create directories reachable on a private network.
 
 
 **Shipped version:** 4.9.5~ynh3
+
 ## Documentation and resources
 
 * Official app website: <https://www.samba.org/>
