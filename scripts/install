@@ -22,18 +22,12 @@ ynh_abort_if_errors
 
 app=$YNH_APP_INSTANCE_NAME
 
-warning=$YNH_APP_ARG_WARNING
-final_path="/etc/samba"
-
 #=================================================
 # CHECK IF THE APP CAN BE INSTALLED WITH THESE ARGS
 #=================================================
-test $warning = "1" || ynh_die --message="You should validate the warning"
+ynh_script_progression --message="Validating installation parameters..."
 
-#=================================================
-# STORE SETTINGS FROM MANIFEST
-#=================================================
-ynh_script_progression --message="Storing installation settings..." --weight=1
+final_path="/etc/samba"
 
 #=================================================
 # STORE SETTINGS FROM MANIFEST
@@ -47,11 +41,13 @@ ynh_app_setting_set --app=$app --key=unbrowseable --value=''
 ynh_app_setting_set --app=$app --key=final_path --value=$final_path
 
 #=================================================
+# STANDARD MODIFICATIONS
+#=================================================
 # FIND AND OPEN A PORT
 #=================================================
+ynh_script_progression --message="Configuring firewall..."
 
 ynh_exec_warn_less yunohost firewall allow Both 445 --no-upnp
-
 
 #=================================================
 # INSTALL DEPENDENCIES
@@ -61,11 +57,15 @@ ynh_script_progression --message="Installing dependencies..." --weight=10
 ynh_install_app_dependencies $pkg_dependencies
 
 #=================================================
-# SETUP SSOWAT
+# SPECIFIC SETUP
 #=================================================
+# SETUP SSOWAT 
+#=================================================
+ynh_script_progression --message="Configuring permissions..."
 
+# We define the permission in advance to be able to use the group
+# in unix permission
 ynh_permission_create --permission="share" --allowed=all_users
-
 #=================================================
 # CREATE DATA DIRECTORY
 #=================================================
@@ -99,12 +99,14 @@ ynh_add_config --template="share-smb.conf" --destination="$final_path/smb.conf.d
 EOF
 cat $final_path/smb.conf.d/*.conf >> $final_path/smb.conf
 
-#================================================
+#=================================================
+# GENERIC FINALIZATION
+#=================================================
 # INTEGRATE SERVICE IN YUNOHOST
-#================================================
+#=================================================
 ynh_script_progression --message="Integrating service in YunoHost..." --weight=1
 
-yunohost service add smbd --description="Samba service" --log="/var/log/smbd/smbd.log"
+yunohost service add smbd --description="Samba service" --log="/var/log/smbd/smbd.log" --needs_exposed_ports 445
 
 #=================================================
 # START SYSTEMD SERVICE
