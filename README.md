@@ -5,7 +5,7 @@ It shall NOT be edited by hand.
 
 # Samba for YunoHost
 
-[![Integration level](https://dash.yunohost.org/integration/samba.svg)](https://dash.yunohost.org/appci/app/samba) ![Working status](https://ci-apps.yunohost.org/ci/badges/samba.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/samba.maintain.svg)  
+[![Integration level](https://dash.yunohost.org/integration/samba.svg)](https://dash.yunohost.org/appci/app/samba) ![Working status](https://ci-apps.yunohost.org/ci/badges/samba.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/samba.maintain.svg)
 [![Install Samba with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=samba)
 
 *[Lire ce readme en français.](./README_fr.md)*
@@ -25,7 +25,6 @@ This package allows you to create directories reachable on a private network.
 
 
 **Shipped version:** 4.9.5~ynh3
-
 ## Documentation and resources
 
 * Official app website: <https://www.samba.org/>
