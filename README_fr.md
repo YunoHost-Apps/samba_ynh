@@ -5,15 +5,15 @@ It shall NOT be edited by hand.
 
 # Samba pour YunoHost
 
-[![Niveau d'intégration](https://dash.yunohost.org/integration/samba.svg)](https://dash.yunohost.org/appci/app/samba) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/samba.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/samba.maintain.svg)  
+[![Niveau d’intégration](https://dash.yunohost.org/integration/samba.svg)](https://dash.yunohost.org/appci/app/samba) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/samba.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/samba.maintain.svg)
 [![Installer Samba avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=samba)
 
 *[Read this readme in english.](./README.md)*
 
-> *Ce package vous permet d'installer Samba rapidement et simplement sur un serveur YunoHost.
-Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l'installer et en profiter.*
+> *Ce package vous permet d’installer Samba rapidement et simplement sur un serveur YunoHost.
+Si vous n’avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l’installer et en profiter.*
 
-## Vue d'ensemble
+## Vue d’ensemble
 
 This package allows you to create directories reachable on a private network.
 
@@ -24,14 +24,13 @@ This package allows you to create directories reachable on a private network.
 - Define readonly directories
 
 
-**Version incluse :** 4.9.5~ynh3
-
+**Version incluse :** 4.9.5~ynh3
 ## Documentations et ressources
 
-* Site officiel de l'app : <https://www.samba.org/>
+* Site officiel de l’app : <https://www.samba.org/>
 * Documentation officielle utilisateur : <https://yunohost.org/app_samba>
-* Documentation officielle de l'admin : <https://www.samba.org/samba/docs/>
-* Dépôt de code officiel de l'app : <https://git.samba.org/?p=samba.git;a=summary>
+* Documentation officielle de l’admin : <https://www.samba.org/samba/docs/>
+* Dépôt de code officiel de l’app : <https://git.samba.org/?p=samba.git;a=summary>
 * Documentation YunoHost pour cette app : <https://yunohost.org/app_samba>
 * Signaler un bug : <https://github.com/YunoHost-Apps/samba_ynh/issues>
 
@@ -47,4 +46,4 @@ ou
 sudo yunohost app upgrade samba -u https://github.com/YunoHost-Apps/samba_ynh/tree/testing --debug
 ```
 
-**Plus d'infos sur le packaging d'applications :** <https://yunohost.org/packaging_apps>
+**Plus d’infos sur le packaging d’applications :** <https://yunohost.org/packaging_apps>
