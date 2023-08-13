@@ -5,7 +5,7 @@
 #=================================================
 
 # dependencies used by the app
-pkg_dependencies="samba"
+#REMOVEME? pkg_dependencies="samba"
 
 #=================================================
 # PERSONAL HELPERS

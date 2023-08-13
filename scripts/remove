@@ -12,12 +12,12 @@ source /usr/share/yunohost/helpers
 #=================================================
 # LOAD SETTINGS
 #=================================================
-ynh_script_progression --message="Loading installation settings..." --weight=1
+#REMOVEME? ynh_script_progression --message="Loading installation settings..." --weight=1
 
-app=$YNH_APP_INSTANCE_NAME
+#REMOVEME? app=$YNH_APP_INSTANCE_NAME
 
-final_path=$(ynh_app_setting_get --app=$app --key=final_path)
-datadir=$(ynh_app_setting_get --app=$app --key=datadir)
+#REMOVEME? #REMOVEME? install_dir=$(ynh_app_setting_get --app=$app --key=install_dir)
+#REMOVEME? data_dir=$(ynh_app_setting_get --app=$app --key=data_dir)
 
 #=================================================
 # STANDARD REMOVE
@@ -35,10 +35,10 @@ fi
 #=================================================
 # REMOVE DEPENDENCIES
 #=================================================
-ynh_script_progression --message="Removing dependencies..." --weight=2
+#REMOVEME? ynh_script_progression --message="Removing dependencies..." --weight=2
 
 # Remove metapackage and its dependencies
-ynh_remove_app_dependencies
+#REMOVEME? ynh_remove_app_dependencies
 
 #=================================================
 # REMOVE DATA DIR
@@ -48,8 +48,8 @@ ynh_remove_app_dependencies
 if [ "${YNH_APP_PURGE:-0}" -eq 1 ]
 then
 	ynh_script_progression --message="Removing app data directory..." --weight=10
-	ynh_secure_remove --file="$datadir"
-	ynh_secure_remove --file="$final_path"
+#REMOVEME? 	ynh_secure_remove --file="$data_dir"
+#REMOVEME? 	ynh_secure_remove --file="$install_dir"
 fi
 
 #=================================================
