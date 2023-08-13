@@ -20,17 +20,6 @@ ynh_app_setting_set --app=$app --key=readonly_dir --value=''
 ynh_app_setting_set --app=$app --key=unbrowseable --value=''
 
 #=================================================
-# SPECIFIC SETUP
-#=================================================
-# SETUP SSOWAT 
-#=================================================
-#REMOVEME? ynh_script_progression --message="Configuring permissions..."
-
-# We define the permission in advance to be able to use the group
-# in unix permission
-#REMOVEME? ynh_permission_create --permission="share" --allowed=all_users
-
-#=================================================
 # CREATE DATA DIRECTORY
 #=================================================
 ynh_script_progression --message="Creating a data directory..." --weight=1
