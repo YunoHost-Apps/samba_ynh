@@ -9,15 +9,14 @@
     "version": "4.13.13~ynh1",
     "url": "https://www.samba.org/",
     "upstream": {
-        "license": "GPL-3.0-only",
+        "license": "AGPL-3.0-only",
         "website": "https://www.samba.org/",
         "admindoc": "https://www.samba.org/samba/docs/",
         "code": "https://git.samba.org/?p=samba.git;a=summary"
     },
     "license": "AGPL-3.0-only",
     "maintainer": {
-        "name": "Galette",
-        "email": ""
+        "name": "Galette"
     },
     "requirements": {
         "yunohost": ">= 11.2"
