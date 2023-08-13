@@ -12,7 +12,6 @@
         "license": "GPL-3.0-only",
         "website": "https://www.samba.org/",
         "admindoc": "https://www.samba.org/samba/docs/",
-        "userdoc": "https://yunohost.org/app_samba",
         "code": "https://git.samba.org/?p=samba.git;a=summary"
     },
     "license": "AGPL-3.0-only",
