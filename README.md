@@ -29,7 +29,6 @@ This package allows you to create directories reachable on a private network.
 ## Documentation and resources
 
 * Official app website: <https://www.samba.org/>
-* Official user documentation: <https://yunohost.org/app_samba>
 * Official admin documentation: <https://www.samba.org/samba/docs/>
 * Upstream app code repository: <https://git.samba.org/?p=samba.git;a=summary>
 * YunoHost documentation for this app: <https://yunohost.org/app_samba>
