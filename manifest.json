@@ -3,10 +3,10 @@
     "id": "samba",
     "packaging_format": 1,
     "description": {
-        "en": "App to share directories on your private network thanks to SMB protocol",
-        "fr": "Application pour partager des dossiers sur un réseau privé via le protocole SMB"
+        "en": "Share directories on your private network thanks to SMB protocol",
+        "fr": "Partager des dossiers sur un réseau privé via le protocole SMB"
     },
-    "version": "4.9.5~ynh3",
+    "version": "4.13.13~ynh1",
     "url": "https://www.samba.org/",
     "upstream": {
         "license": "GPL-3.0-only",
@@ -21,7 +21,7 @@
         "email": ""
     },
     "requirements": {
-        "yunohost": ">= 4.3.0"
+        "yunohost": ">= 11.2"
     },
     "multi_instance": false,
     "services": [],
