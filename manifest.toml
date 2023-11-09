@@ -19,16 +19,14 @@ code = "https://git.samba.org/?p=samba.git;a=summary"
 yunohost = ">= 11.2"
 architectures = "all"
 multi_instance = false
+
 ldap = "not_relevant"
+
 sso = "not_relevant"
+
 disk = "50M"
 ram.build = "50M"
 ram.runtime = "50M"
-
-    [install.warning]
-    ask.en = "I understand this app is only for private network purpose and i should not install it on a server with a public IP or open the 445 port on my home router."
-    ask.fr = "Je comprends que cette application est uniquement à des fins de réseau privé et que je ne dois pas l'installer sur un serveur avec une adresse IP publique ou ouvrir le port 445 sur mon routeur."
-    type = "alert"
 
 [resources]
     [resources.system_user]
