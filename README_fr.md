@@ -31,7 +31,7 @@ This package allows you to create directories reachable on a private network.
 * Site officiel de l’app : <https://www.samba.org/>
 * Documentation officielle de l’admin : <https://www.samba.org/samba/docs/>
 * Dépôt de code officiel de l’app : <https://git.samba.org/?p=samba.git;a=summary>
-* Documentation YunoHost pour cette app : <https://yunohost.org/app_samba>
+* YunoHost Store: <https://apps.yunohost.org/app/samba>
 * Signaler un bug : <https://github.com/YunoHost-Apps/samba_ynh/issues>
 
 ## Informations pour les développeurs
