@@ -34,7 +34,7 @@ ram.runtime = "50M"
     [resources.system_user]
 
     [resources.install_dir]
-    dir = ["/etc/samba"]
+    dir = "/etc/samba"
 
     [resources.ports]
     main.default = 445
