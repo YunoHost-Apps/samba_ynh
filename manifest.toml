@@ -49,4 +49,4 @@ ram.runtime = "50M"
     share.allowed = "all_users"
 
     [resources.apt]
-    packages = ["samba"]
+    packages = "samba"
