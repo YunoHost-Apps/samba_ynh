@@ -28,6 +28,8 @@ disk = "50M"
 ram.build = "50M"
 ram.runtime = "50M"
 
+[install]
+
 [resources]
     [resources.system_user]
 
