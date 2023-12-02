@@ -44,7 +44,6 @@ ram.runtime = "50M"
     subdirs = ["share"]
 
     [resources.permissions]
-    share.url = "/"
     share.show_tile = false
     share.allowed = "all_users"
 
