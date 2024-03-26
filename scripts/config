@@ -93,8 +93,7 @@ END
 
     # Remove configuration for unlisted directories
     pushd $install_dir/smb.conf.d
-    for $directory in $(ls !(0-global).conf)
-    do
+    for $directory in $(ls !(0-global).conf); do
         if ! [[ "${directory%.conf}" =~ $(echo "^($(echo $directories | sed s/ /|/g))$") ]]; then
             ynh_secure_remove "$install_dir/smb.conf.d/"
         fi
@@ -118,7 +117,7 @@ EOF
 
 set__readonly_dir() {
     local value
-    for directory in $directories; do
+    for directory in $(echo $directories | sed "s/,/ /g"); do
         value="no"
         if [[ $directory =~ $(echo "^($(echo $readonly_dir | sed s/ /|/g))$") ]]; then
             value="yes"
@@ -130,7 +129,7 @@ set__readonly_dir() {
 
 set__unbrowseable() {
     local value
-    for directory in $directories; do
+    for directory in $(echo $directories | sed "s/,/ /g"); do
         value="yes"
         if [[ $directory =~ $(echo "^($(echo $unbrowseable | sed s/ /|/g))$") ]]; then
             value="no"
