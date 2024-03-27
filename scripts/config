@@ -94,7 +94,7 @@ END
     # Remove configuration for unlisted directories
     pushd $install_dir/smb.conf.d
     for $directory in $(ls !(0-global).conf); do
-        if ! [[ "${directory%.conf}" =~ $(echo "^($(echo $directories | sed s/ /|/g))$") ]]; then
+        if ! [[ "${directory%.conf}" =~ $(echo "^($(echo $directories | sed 's/,\| /|/g'))$") ]]; then
             ynh_secure_remove "$install_dir/smb.conf.d/"
         fi
     done
@@ -119,7 +119,7 @@ set__readonly_dir() {
     local value
     for directory in $(echo $directories | sed "s/,/ /g"); do
         value="no"
-        if [[ $directory =~ $(echo "^($(echo $readonly_dir | sed s/ /|/g))$") ]]; then
+        if [[ $directory =~ $(echo "^($(echo $readonly_dir | sed 's/,\| /|/g'))$") ]]; then
             value="yes"
         fi
         ynh_write_var_in_file --file=$install_dir/smb.conf.d/$directory.conf --key="read only" --value="$value"
@@ -131,7 +131,7 @@ set__unbrowseable() {
     local value
     for directory in $(echo $directories | sed "s/,/ /g"); do
         value="yes"
-        if [[ $directory =~ $(echo "^($(echo $unbrowseable | sed s/ /|/g))$") ]]; then
+        if [[ $directory =~ $(echo "^($(echo $unbrowseable | sed 's/,\| /|/g'))$") ]]; then
             value="no"
         fi
         ynh_write_var_in_file --file=$install_dir/smb.conf.d/$directory.conf --key="browsable" --value="$value"
