@@ -93,7 +93,7 @@ END
 
     # Remove configuration for unlisted directories
     pushd $install_dir/smb.conf.d
-    for $directory in $(ls !(0-global).conf); do
+    for directory in $(ls !(0-global).conf); do
         if ! [[ "${directory%.conf}" =~ $(echo "^($(echo $directories | sed 's/,\| /|/g'))$") ]]; then
             ynh_secure_remove "$install_dir/smb.conf.d/"
         fi
