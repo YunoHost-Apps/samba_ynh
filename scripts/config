@@ -93,19 +93,19 @@ END
 #---------------------------------------------
 # IMPORTANT: to be able to upgrade properly, you have to saved the value in settings too
 #---------------------------------------------
-    ynh_app_setting_set $app directories $directories
+    ynh_app_setting_set $app directories "$directories"
 }
 
 set__readonly_dir() {
     local value
     for directory in $(echo $directories | sed "s/,/ /g"); do
         value="no"
-        if [[ $directory =~ $(echo "^($(echo $readonly_dir | sed 's/,\| /|/g'))$") ]]; then
+        if [[ -n "$readonly_dir" && $directory =~ $(echo "^($(echo $readonly_dir | sed 's/,\| /|/g'))$") ]]; then
             value="yes"
         fi
         ynh_write_var_in_file --file=$install_dir/smb.conf.d/$directory.conf --key="read only" --value="$value"
     done
-    ynh_app_setting_set $app readonly_dir $readonly_dir
+    ynh_app_setting_set $app readonly_dir "$readonly_dir"
     write_smb_conf
 }
 
@@ -113,15 +113,15 @@ set__unbrowseable() {
     local value
     for directory in $(echo $directories | sed "s/,/ /g"); do
         value="yes"
-        if [[ $directory =~ $(echo "^($(echo $unbrowseable | sed 's/,\| /|/g'))$") ]]; then
+        if [[ -n "$unbrowseable" &&  $directory =~ $(echo "^($(echo $unbrowseable | sed 's/,\| /|/g'))$") ]]; then
             value="no"
         fi
         ynh_write_var_in_file --file=$install_dir/smb.conf.d/$directory.conf --key="browsable" --value="$value"
     done
-    ynh_app_setting_set $app unbrowseable $unbrowseable
-
+    ynh_app_setting_set $app unbrowseable "$unbrowseable"
     write_smb_conf
 }
+
 #=================================================
 # GENERIC FINALIZATION
 #=================================================
