@@ -1,10 +1,10 @@
 #!/bin/bash
-# In simple cases, you don't need a config script. 
+# In simple cases, you don't need a config script.
 
-# With a simple config_panel.toml, you can write in the app settings, in the 
+# With a simple config_panel.toml, you can write in the app settings, in the
 # upstream config file or replace complete files (logo ...) and restart services.
 
-# The config scripts allows you to go further, to handle specific cases 
+# The config scripts allows you to go further, to handle specific cases
 # (validation of several interdependent fields, specific getter/setter for a value,
 # display dynamic informations or choices, pre-loading of config type .cube... ).
 
@@ -21,30 +21,7 @@ ynh_abort_if_errors
 data_dir=$(ynh_app_setting_get --app=$app --key=data_dir)
 install_dir=$(ynh_app_setting_get --app=$app --key=install_dir)
 
-#=================================================
-# SPECIFIC GETTERS FOR TOML SHORT KEY
-#=================================================
-get__readonly_dir() {
-    local directories=$(ynh_app_setting_get $app directories)
-    if [[ "$directories" == "" ]]
-    then
-        echo "choices: []"
-    else
-        echo "choices:"
-        for directory in $(echo $directories | sed "s/,/ /g")
-        do
-            echo "  $directory: $directory"
-        done
-    fi
-}
 
-get__unbrowseable() {
-    get__readonly_dir
-}
-
-#=================================================
-# SPECIFIC VALIDATORS FOR TOML SHORT KEYS
-#=================================================
 
 #=================================================
 # SPECIFIC SETTERS FOR TOML SHORT KEYS
