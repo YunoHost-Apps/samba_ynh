@@ -61,9 +61,9 @@ set__directories() {
         chown -R root:root "$data_dir/$directory"
         setfacl -R -m g:samba.$directory:rwx,d:g:samba.$directory:rwx $data_dir/$directory
 
-
-        # Add the configuration in /etc/samba/smb.conf if needed
-        cat > $install_dir/smb.conf.d/$directory.conf <<END
+        # Add the configuration in /etc/samba/smb.conf.d/ if its missing
+        if [ ! -f "$install_dir/smb.conf.d/$directory.conf" ]; then
+            cat > $install_dir/smb.conf.d/$directory.conf <<END
 [$directory]
    comment = $directory
    read only = no
@@ -78,6 +78,7 @@ set__directories() {
    recycle:keeptree = yes
    recycle:versions = yes
 END
+        fi
 
     done
 
