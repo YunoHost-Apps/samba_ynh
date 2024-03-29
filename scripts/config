@@ -103,7 +103,7 @@ set__readonly_dir() {
         if [[ -n "$readonly_dir" && $directory =~ $(echo "^($(echo $readonly_dir | sed 's/,\| /|/g'))$") ]]; then
             value="yes"
         fi
-        ynh_write_var_in_file --file=$install_dir/smb.conf.d/$directory.conf --key="read only" --value="$value"
+        ynh_write_var_in_file --file=$install_dir/smb.conf.d/$directory.conf --key=read[[:space:]]only --value="$value"
     done
     ynh_app_setting_set $app readonly_dir "$readonly_dir"
     write_smb_conf
