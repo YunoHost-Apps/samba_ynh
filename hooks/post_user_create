@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 echo "${YNH_USER_PASSWORD}
 ${YNH_USER_PASSWORD}
-" | sudo smbpasswd -a $YNH_USER_USERNAME
+" | smbpasswd -a $YNH_USER_USERNAME
