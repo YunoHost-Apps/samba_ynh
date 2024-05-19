@@ -1,0 +1,49 @@
+<!--
+NOTA: Este README foi creado automáticamente por <https://github.com/YunoHost/apps/tree/master/tools/readme_generator>
+NON debe editarse manualmente.
+-->
+
+# Samba para YunoHost
+
+[![Nivel de integración](https://dash.yunohost.org/integration/samba.svg)](https://dash.yunohost.org/appci/app/samba) ![Estado de funcionamento](https://ci-apps.yunohost.org/ci/badges/samba.status.svg) ![Estado de mantemento](https://ci-apps.yunohost.org/ci/badges/samba.maintain.svg)
+
+[![Instalar Samba con YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=samba)
+
+*[Le este README en outros idiomas.](./ALL_README.md)*
+
+> *Este paquete permíteche instalar Samba de xeito rápido e doado nun servidor YunoHost.*  
+> *Se non usas YunoHost, le a [documentación](https://yunohost.org/install) para saber como instalalo.*
+
+## Vista xeral
+
+This package allows you to create directories reachable on a private network.
+
+### Features
+
+- Create and name your directories;
+- Configure permissions for your directories thanks to the yunohost permission view;
+- Define readonly directories
+
+
+**Versión proporcionada:** 4.13.13~ynh2
+## Documentación e recursos
+
+- Web oficial da app: <https://www.samba.org/>
+- Documentación oficial para admin: <https://www.samba.org/samba/docs/>
+- Repositorio de orixe do código: <https://git.samba.org/?p=samba.git;a=summary>
+- Tenda YunoHost: <https://apps.yunohost.org/app/samba>
+- Informar dun problema: <https://github.com/YunoHost-Apps/samba_ynh/issues>
+
+## Info de desenvolvemento
+
+Envía a túa colaboración á [rama `testing`](https://github.com/YunoHost-Apps/samba_ynh/tree/testing).
+
+Para probar a rama `testing`, procede deste xeito:
+
+```bash
+sudo yunohost app install https://github.com/YunoHost-Apps/samba_ynh/tree/testing --debug
+ou
+sudo yunohost app upgrade samba -u https://github.com/YunoHost-Apps/samba_ynh/tree/testing --debug
+```
+
+**Máis info sobre o empaquetado da app:** <https://yunohost.org/packaging_apps>
