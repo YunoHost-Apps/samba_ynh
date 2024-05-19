@@ -14,7 +14,7 @@ source /usr/share/yunohost/helpers
 #=================================================
 ynh_script_progression --message="Storing installation settings..." --weight=1
 
-ynh_app_setting_set --app=$app --key=directories --value=shared
+ynh_app_setting_set --app=$app --key=directories --value=share
 ynh_app_setting_set --app=$app --key=advanced --value=0
 ynh_app_setting_set --app=$app --key=readonly_dir --value=''
 ynh_app_setting_set --app=$app --key=unbrowseable --value=''
