@@ -2,7 +2,7 @@ version = "1.0"
 
 [main]
 name = "shared directory"
-services = ["samba"]
+services = ["smbd"]
 
 [main.main]
 	name = ""
