@@ -5,7 +5,7 @@
 
 # YunoHost 上的 Samba
 
-[![集成程度](https://dash.yunohost.org/integration/samba.svg)](https://dash.yunohost.org/appci/app/samba) ![工作状态](https://ci-apps.yunohost.org/ci/badges/samba.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/samba.maintain.svg)
+[![集成程度](https://dash.yunohost.org/integration/samba.svg)](https://ci-apps.yunohost.org/ci/apps/samba/) ![工作状态](https://ci-apps.yunohost.org/ci/badges/samba.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/samba.maintain.svg)
 
 [![使用 YunoHost 安装 Samba](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=samba)
 

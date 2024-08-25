@@ -5,7 +5,7 @@ Il NE doit PAS être modifié à la main.
 
 # Samba pour YunoHost
 
-[![Niveau d’intégration](https://dash.yunohost.org/integration/samba.svg)](https://dash.yunohost.org/appci/app/samba) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/samba.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/samba.maintain.svg)
+[![Niveau d’intégration](https://dash.yunohost.org/integration/samba.svg)](https://ci-apps.yunohost.org/ci/apps/samba/) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/samba.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/samba.maintain.svg)
 
 [![Installer Samba avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=samba)
 
