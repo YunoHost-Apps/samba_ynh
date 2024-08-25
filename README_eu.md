@@ -5,7 +5,7 @@ EZ editatu eskuz.
 
 # Samba YunoHost-erako
 
-[![Integrazio maila](https://dash.yunohost.org/integration/samba.svg)](https://dash.yunohost.org/appci/app/samba) ![Funtzionamendu egoera](https://ci-apps.yunohost.org/ci/badges/samba.status.svg) ![Mantentze egoera](https://ci-apps.yunohost.org/ci/badges/samba.maintain.svg)
+[![Integrazio maila](https://dash.yunohost.org/integration/samba.svg)](https://ci-apps.yunohost.org/ci/apps/samba/) ![Funtzionamendu egoera](https://ci-apps.yunohost.org/ci/badges/samba.status.svg) ![Mantentze egoera](https://ci-apps.yunohost.org/ci/badges/samba.maintain.svg)
 
 [![Instalatu Samba YunoHost-ekin](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=samba)
 
