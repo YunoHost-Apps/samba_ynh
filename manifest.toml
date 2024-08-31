@@ -5,7 +5,7 @@ name = "Samba"
 description.en = "Share directories on your private network thanks to SMB protocol"
 description.fr = "Partager des dossiers sur un réseau privé via le protocole SMB"
 
-version = "4.13.13~yn3"
+version = "4.13.13~ynh3"
 
 maintainers = ["Galette"]
 
