@@ -25,7 +25,7 @@ This package allows you to create directories reachable on a private network.
 - Define readonly directories
 
 
-**Shipped version:** 4.13.13~ynh2
+**Shipped version:** 4.13.13~yn3
 ## Documentation and resources
 
 - Official app website: <https://www.samba.org/>
