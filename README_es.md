@@ -5,7 +5,7 @@ No se debe editar a mano.
 
 # Samba para Yunohost
 
-[![Nivel de integración](https://dash.yunohost.org/integration/samba.svg)](https://dash.yunohost.org/appci/app/samba) ![Estado funcional](https://ci-apps.yunohost.org/ci/badges/samba.status.svg) ![Estado En Mantención](https://ci-apps.yunohost.org/ci/badges/samba.maintain.svg)
+[![Nivel de integración](https://dash.yunohost.org/integration/samba.svg)](https://ci-apps.yunohost.org/ci/apps/samba/) ![Estado funcional](https://ci-apps.yunohost.org/ci/badges/samba.status.svg) ![Estado En Mantención](https://ci-apps.yunohost.org/ci/badges/samba.maintain.svg)
 
 [![Instalar Samba con Yunhost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=samba)
 
@@ -25,7 +25,7 @@ This package allows you to create directories reachable on a private network.
 - Define readonly directories
 
 
-**Versión actual:** 4.13.13~ynh2
+**Versión actual:** 4.13.13~yn3
 ## Documentaciones y recursos
 
 - Sitio web oficial: <https://www.samba.org/>
