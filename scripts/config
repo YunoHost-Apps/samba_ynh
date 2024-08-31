@@ -8,18 +8,12 @@
 # (validation of several interdependent fields, specific getter/setter for a value,
 # display dynamic informations or choices, pre-loading of config type .cube... ).
 
-#=================================================
-# GENERIC STARTING
-#=================================================
-# IMPORT GENERIC HELPERS
-#=================================================
-
 source /usr/share/yunohost/helpers
 
-ynh_abort_if_errors
+#REMOVEME? ynh_abort_if_errors
 
-data_dir=$(ynh_app_setting_get --app=$app --key=data_dir)
-install_dir=$(ynh_app_setting_get --app=$app --key=install_dir)
+data_dir=$(ynh_app_setting_get --key=data_dir)
+install_dir=$(ynh_app_setting_get --key=install_dir)
 
 #=================================================
 # recreate the smb.conf from smb.conf.d
@@ -34,7 +28,6 @@ write_smb_conf() {
 EOF
     cat $install_dir/smb.conf.d/*.conf >> $install_dir/smb.conf
 }
-
 
 #=================================================
 # SPECIFIC SETTERS FOR TOML SHORT KEYS
@@ -56,7 +49,7 @@ set__directories() {
         # Create the directory
         mkdir -p $data_dir/$directory
 
-        chmod 750 "$data_dir/$directory"
+        #REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod 750 "$data_dir/$directory"
         chmod -R o-rwx "$data_dir/$directory"
         chown -R root:root "$data_dir/$directory"
         setfacl -R -m g:samba.$directory:rwx,d:g:samba.$directory:rwx $data_dir/$directory
@@ -85,7 +78,7 @@ END
     # Remove configuration for unlisted directories
     for directory in $(find $install_dir/smb.conf.d/ -maxdepth 1 -type f -not -name '0-global.conf' -exec basename {} \;); do
         if ! [[ "${directory%.conf}" =~ $(echo "^($(echo $directories | sed 's/,\| /|/g'))$") ]]; then
-            ynh_secure_remove "$install_dir/smb.conf.d/$directory"
+            ynh_safe_rm "$install_dir/smb.conf.d/$directory"
         fi
     done
 
@@ -123,7 +116,5 @@ set__unbrowseable() {
     write_smb_conf
 }
 
-#=================================================
-# GENERIC FINALIZATION
 #=================================================
 ynh_app_config_run $1
