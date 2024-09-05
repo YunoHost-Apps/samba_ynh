@@ -5,7 +5,7 @@ name = "Samba"
 description.en = "Share directories on your private network thanks to SMB protocol"
 description.fr = "Partager des dossiers sur un réseau privé via le protocole SMB"
 
-version = "4.13.13~ynh3"
+version = "4.13.13~ynh4"
 
 maintainers = ["Galette"]
 
@@ -16,7 +16,7 @@ admindoc = "https://www.samba.org/samba/docs/"
 code = "https://git.samba.org/?p=samba.git;a=summary"
 
 [integration]
-yunohost = ">= 11.2.29"
+yunohost = ">= 11.2.30"
 helpers_version = "2.1"
 architectures = "all"
 multi_instance = false
