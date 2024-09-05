@@ -10,8 +10,6 @@
 
 source /usr/share/yunohost/helpers
 
-#REMOVEME? ynh_abort_if_errors
-
 data_dir=$(ynh_app_setting_get --key=data_dir)
 install_dir=$(ynh_app_setting_get --key=install_dir)
 
@@ -49,7 +47,7 @@ set__directories() {
         # Create the directory
         mkdir -p $data_dir/$directory
 
-        #REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod 750 "$data_dir/$directory"
+        chmod 750 "$data_dir/$directory"
         chmod -R o-rwx "$data_dir/$directory"
         chown -R root:root "$data_dir/$directory"
         setfacl -R -m g:samba.$directory:rwx,d:g:samba.$directory:rwx $data_dir/$directory
