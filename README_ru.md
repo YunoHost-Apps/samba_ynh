@@ -5,7 +5,9 @@
 
 # Samba для YunoHost
 
-[![Уровень интеграции](https://dash.yunohost.org/integration/samba.svg)](https://ci-apps.yunohost.org/ci/apps/samba/) ![Состояние работы](https://ci-apps.yunohost.org/ci/badges/samba.status.svg) ![Состояние сопровождения](https://ci-apps.yunohost.org/ci/badges/samba.maintain.svg)
+[![Уровень интеграции](https://apps.yunohost.org/badge/integration/samba)](https://ci-apps.yunohost.org/ci/apps/samba/)
+![Состояние работы](https://apps.yunohost.org/badge/state/samba)
+![Состояние сопровождения](https://apps.yunohost.org/badge/maintained/samba)
 
 [![Установите Samba с YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=samba)
 
