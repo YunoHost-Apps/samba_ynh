@@ -5,7 +5,9 @@ Ini TIDAK boleh diedit dengan tangan.
 
 # Samba untuk YunoHost
 
-[![Tingkat integrasi](https://dash.yunohost.org/integration/samba.svg)](https://ci-apps.yunohost.org/ci/apps/samba/) ![Status kerja](https://ci-apps.yunohost.org/ci/badges/samba.status.svg) ![Status pemeliharaan](https://ci-apps.yunohost.org/ci/badges/samba.maintain.svg)
+[![Tingkat integrasi](https://apps.yunohost.org/badge/integration/samba)](https://ci-apps.yunohost.org/ci/apps/samba/)
+![Status kerja](https://apps.yunohost.org/badge/state/samba)
+![Status pemeliharaan](https://apps.yunohost.org/badge/maintained/samba)
 
 [![Pasang Samba dengan YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=samba)
 
