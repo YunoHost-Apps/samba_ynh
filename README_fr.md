@@ -18,13 +18,13 @@ Il NE doit PAS être modifié à la main.
 
 ## Vue d’ensemble
 
-This package allows you to create directories reachable on a private network.
+Ce paquetage vous permet de créer des répertoires accessibles sur un réseau privé.
 
-### Features
+### Caractéristiques
 
-- Create and name your directories;
-- Configure permissions for your directories thanks to the yunohost permission view;
-- Define readonly directories
+- Créez et nommez vos répertoires ;
+- Configurez les permissions pour vos répertoires grâce à la vue des permissions de YunoHost ;
+- Définir des répertoires en lecture seule
 
 
 **Version incluse :** 4.13.13~ynh5
