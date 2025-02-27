@@ -4,6 +4,7 @@ It shall NOT be edited by hand.
 -->
 
 # Samba for YunoHost
+
 [![Integration level](https://apps.yunohost.org/badge/integration/samba)](https://ci-apps.yunohost.org/ci/apps/samba/)
 ![Working status](https://apps.yunohost.org/badge/state/samba)
 ![Maintenance status](https://apps.yunohost.org/badge/maintained/samba)

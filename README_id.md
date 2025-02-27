@@ -28,7 +28,6 @@ This package allows you to create directories reachable on a private network.
 
 
 **Versi terkirim:** 4.13.13~ynh4
-
 ## Dokumentasi dan sumber daya
 
 - Website aplikasi resmi: <https://www.samba.org/>
