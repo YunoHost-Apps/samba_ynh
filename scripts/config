@@ -64,7 +64,7 @@ set__directories() {
    valid users = @samba.$directory
    create mask = 0660
    directory mask = 770
-   vfs objects = dfs_samba4 acl_xattr recycle
+   vfs objects = acl_xattr recycle
    recycle:repository = .recycle
    recycle:keeptree = yes
    recycle:versions = yes
