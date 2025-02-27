@@ -55,6 +55,7 @@ yunohost service add smbd --description="Samba service" --log="/var/log/smbd/smb
 ynh_script_progression "Starting $app's systemd service..."
 
 ynh_systemctl --service=smbd --action="start"
+ynh_systemctl --service="avahi-daemon" --action="start"
 
 #=================================================
 # END OF SCRIPT
