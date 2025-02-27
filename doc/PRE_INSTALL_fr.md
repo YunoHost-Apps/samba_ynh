@@ -1,1 +1,1 @@
-Je comprends que cette application est uniquement à des fins de réseau privé et que je ne dois pas l'installer sur un serveur avec une adresse IP publique ou ouvrir le port 445 sur mon routeur.
+Nous devons comprendre que cette application est uniquement destinée à un réseau privé et que nous ne devrions pas l'installer sur un serveur avec une IP publique ou ouvrir le port 445 sur mon routeur domestique.

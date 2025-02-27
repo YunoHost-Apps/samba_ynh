@@ -16,13 +16,12 @@ admindoc = "https://www.samba.org/samba/docs/"
 code = "https://git.samba.org/?p=samba.git;a=summary"
 
 [integration]
-yunohost = ">= 11.2.30"
+yunohost = ">= 12.0.9"
 helpers_version = "2.1"
 architectures = "all"
 multi_instance = false
 
 ldap = "not_relevant"
-
 sso = "not_relevant"
 
 disk = "50M"
