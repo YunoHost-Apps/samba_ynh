@@ -27,7 +27,7 @@ This package allows you to create directories reachable on a private network.
 - Define readonly directories
 
 
-**分发版本：** 4.13.13~ynh4
+**分发版本：** 4.13.13~ynh5
 ## 文档与资源
 
 - 官方应用网站： <https://www.samba.org/>
