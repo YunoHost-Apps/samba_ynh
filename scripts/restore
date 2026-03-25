@@ -26,7 +26,7 @@ chown -R root:root "$data_dir"
 ynh_script_progression "Integrating service in YunoHost..."
 
 # Don't add --needs_exposed_ports 445 , we don't want a remote diagnosis here
-yunohost service add smbd --description="Samba service" --log="/var/log/smbd/smbd.log" --needs_exposed_ports $port
+yunohost service add smbd --description="Samba service" --log="/var/log/smbd/smbd.log" --needs_exposed_ports=$port
 
 #=================================================
 # START SYSTEMD SERVICE
