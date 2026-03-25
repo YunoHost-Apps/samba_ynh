@@ -6,7 +6,9 @@ source /usr/share/yunohost/helpers
 # REMOVE SERVICE INTEGRATION IN YUNOHOST
 #=================================================
 
-if ynh_hide_warnings yunohost service status $app >/dev/null; then
+if yunohost service status smbd >/dev/null
+then
+	ynh_script_progression "Removing smbd service integration..."
 	yunohost service remove smbd
 fi
 
