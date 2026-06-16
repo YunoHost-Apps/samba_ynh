@@ -1,6 +1,5 @@
 #!/bin/bash
 
-source _common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
@@ -18,6 +17,7 @@ ynh_app_setting_set --key=unbrowseable --value=''
 #=================================================
 ynh_script_progression "Creating a data directory..."
 
+chown -R $app:$app.main "$data_dir"
 chmod 750 "$data_dir/share"
 chmod -R o-rwx "$data_dir/share"
 chown -R root:root "$data_dir/share"
@@ -47,7 +47,7 @@ cat $install_dir/smb.conf.d/*.conf >> $install_dir/smb.conf
 #=================================================
 ynh_script_progression "Integrating service in YunoHost..."
 
-yunohost service add smbd --description="Samba service" --log="/var/log/smbd/smbd.log" --needs_exposed_ports $port
+yunohost service add smbd --description="Samba service" --log="/var/log/smbd/smbd.log" --needs_exposed_ports=$port
 
 #=================================================
 # START SYSTEMD SERVICE

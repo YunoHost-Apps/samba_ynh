@@ -83,9 +83,24 @@ END
     write_smb_conf
 
 #---------------------------------------------
-# IMPORTANT: to be able to upgrade properly, you have to saved the value in settings too
+# IMPORTANT: to be able to upgrade properly, you have to save the value in settings too
 #---------------------------------------------
-    ynh_app_setting_set $app directories "$directories"
+    ynh_app_setting_set --app="$app" --key=directories --value="$directories"
+}
+
+validate__directories() {
+    usernames=$(ynh_user_list)
+    for directory in $(echo $directories | sed "s/,/ /g"); do
+        if ! [[ "$directory" =~ ^[a-z0-9_]+$ ]]; then
+            echo "Directories names can contain lowercase alphabetic characters, numbers and underscore."
+            return 1
+        fi
+        regex=\\b$directory\\b
+        if [[ "$usernames" =~ $regex ]]; then
+            echo "Directories names can't be same as any username."
+            return 1
+        fi
+    done
 }
 
 set__readonly_dir() {
@@ -97,7 +112,7 @@ set__readonly_dir() {
         fi
         ynh_write_var_in_file --file=$install_dir/smb.conf.d/$directory.conf --key=read[[:space:]]only --value="$value"
     done
-    ynh_app_setting_set $app readonly_dir "$readonly_dir"
+    ynh_app_setting_set --app="$app" --key=readonly_dir --value="$readonly_dir"
     write_smb_conf
 }
 
@@ -110,7 +125,7 @@ set__unbrowseable() {
         fi
         ynh_write_var_in_file --file=$install_dir/smb.conf.d/$directory.conf --key="browsable" --value="$value"
     done
-    ynh_app_setting_set $app unbrowseable "$unbrowseable"
+    ynh_app_setting_set --app="$app" --key=unbrowseable --value="$unbrowseable"
     write_smb_conf
 }
 

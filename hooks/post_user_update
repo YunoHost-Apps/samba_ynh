@@ -1,6 +1,5 @@
 #!/bin/bash
 
-echo "${YNH_USER_PASSWORD}
-${YNH_USER_PASSWORD}
-" | smbpasswd -a $YNH_USER_USERNAME
-
+if ! [ -z "$YNH_USER_PASSWORD" ]
+    then (echo $YNH_USER_PASSWORD; echo $YNH_USER_PASSWORD) | smbpasswd -s -a $YNH_USER_USERNAME
+fi
