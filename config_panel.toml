@@ -11,6 +11,7 @@ services = ["smbd"]
 [main.main.directories]
 	ask = "List of shared directories"
 	type = "tags"
+	optional = false
 
 [main.main.advanced]
 	ask = "Advanced parameter"

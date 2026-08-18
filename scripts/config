@@ -27,6 +27,33 @@ EOF
     cat $install_dir/smb.conf.d/*.conf >> $install_dir/smb.conf
 }
 
+validate__directories() {
+    declare -A errors=()
+    # errors_index is needed to ensure languages appearance order as associative arrays ($errors) can't be ordered by declared keys
+    local usernames=$(ynh_user_list) errors_index=("en" "fr") hasAlreadyUnauthorizedCharactersError hasAlreadyUsernameError message=""
+    for directory in $(echo $directories | sed "s/,/ /g"); do
+        if [[ ! "$directory" =~ ^[a-z0-9_]+$ && ! "${hasAlreadyUnauthorizedCharactersError-}" ]]; then
+            hasAlreadyUnauthorizedCharactersError=true
+            errors["en"]="- Directories names can only contain lowercase alphabetic characters, numbers and underscores.\n${errors["en"]-}"
+            errors["fr"]="- Les noms de dossiers ne peuvent contenir que des lettres, des chiffres et des tirets bas (_).\n${errors["fr"]-}"
+        fi
+        regex=\\b$directory\\b
+        if [[ "$usernames" =~ $regex && ! "${hasAlreadyUsernameError-}" ]]; then
+            hasAlreadyUsernameError=true
+            errors["en"]="${errors["en"]-}- Directories names can't be the same as a username.\nReminder: every user already gets, by default, a shared directory bearing its name.\n"
+            errors["fr"]="${errors["fr"]-}- Les dossiers ne peuvent porter le même nom qu'un utilisateur.\nRappel : Par défaut, chaque utilisateur bénéficie déjà d'un dossier partagé portant son nom.\n"
+        fi
+    done
+    if [[ ${#errors[@]} -ne 0 ]]; then
+        errors["en"]="<b>[EN]</b> The following errors were raised while saving your changes:\n${errors["en"]}"
+        errors["fr"]="<b>[FR]</b> La ou les erreurs suivantes ont été levées lors de la sauvegarde de vos modifications :\n${errors["fr"]}"
+        for key in "${errors_index[@]}"; do
+            message+="${errors[$key]}"
+        done
+        echo "$message"
+    fi
+}
+
 #=================================================
 # SPECIFIC SETTERS FOR TOML SHORT KEYS
 #=================================================
@@ -86,21 +113,6 @@ END
 # IMPORTANT: to be able to upgrade properly, you have to save the value in settings too
 #---------------------------------------------
     ynh_app_setting_set --app="$app" --key=directories --value="$directories"
-}
-
-validate__directories() {
-    usernames=$(ynh_user_list)
-    for directory in $(echo $directories | sed "s/,/ /g"); do
-        if ! [[ "$directory" =~ ^[a-z0-9_]+$ ]]; then
-            echo "Directories names can contain lowercase alphabetic characters, numbers and underscore."
-            return 1
-        fi
-        regex=\\b$directory\\b
-        if [[ "$usernames" =~ $regex ]]; then
-            echo "Directories names can't be same as any username."
-            return 1
-        fi
-    done
 }
 
 set__readonly_dir() {
