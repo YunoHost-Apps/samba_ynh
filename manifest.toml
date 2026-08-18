@@ -3,7 +3,7 @@ packaging_format = 2
 id = "samba"
 name = "Samba"
 description.en = "Share directories on your private network thanks to SMB protocol"
-description.fr = "Partager des dossiers sur un réseau privé via le protocole SMB"
+description.fr = "Partagez des dossiers sur un réseau privé via le protocole SMB"
 
 version = "4.13.13~ynh5"
 

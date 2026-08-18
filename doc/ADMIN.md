@@ -10,7 +10,7 @@ User can connect through their file browser with "smb://YUNOHOST_USER:YUNOHOST_P
 1. Create shared folders by filling "List of shared directories" field.
 2. Enable "Advanced parameter" if you want to set read-only or unbrowseable folders.
     a. Add already existing shared folders into "List of readonly directories" and/or "List of unbrowseable directories" fields. 
-3. Configure folder access under "Tiles and permissions" -> "Permission 'NAME_OF_YOUR_FOLDER'" -> fill "Groups/users allowed to access" field and/or on [Manage groups and permissions page](/yunohost/admin/#/groups)."
+3. Configure folder access under "Tiles and permissions" -> "Permission 'NAME_OF_YOUR_FOLDER'" -> fill "Groups/users allowed to access" field and/or on [Manage groups and permissions page](/yunohost/admin/#/groups).
 4. User can connect through their file browser with "smb://YUNOHOST_USER:YUNOHOST_PASSWORD@YUNOHOST_HOST/SHARED_DIRECTORY".
 
 ---

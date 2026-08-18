@@ -1,7 +1,8 @@
 version = "1.0"
 
 [main]
-name = "shared directory"
+name.en = "Shared directories"
+name.fr = "Répertoires partagés"
 services = ["smbd"]
 
 [main.main]
@@ -9,18 +10,21 @@ services = ["smbd"]
 	optional = true
 
 [main.main.directories]
-	ask = "List of shared directories"
+	ask.en = "List of shared directories"
+	ask.fr = "Liste des répertoires partagés"
 	type = "tags"
 	optional = false
 	help.en = "Use space bar to define multiple directories at once. Use enter/return key to apply changes."
 	help.fr = "Pour définir plusieurs répertoires à la fois, utiliser la barre d'espace. Pour appliquer les changements, utiliser la touche entrée/retour à la ligne."
 
 [main.main.advanced]
-	ask = "Advanced parameters"
+	ask.en = "Advanced parameters"
+	ask.fr = "Paramètres avancés"
 	type = "boolean"
 	
 [main.main.readonly_dir]
-	ask = "List of readonly directories"
+	ask.en = "List of readonly directories"
+	ask.fr = "Liste des répertoires en lecture seule"
 	type = "tags"
 	visible = "advanced"
 	icon = "folder"
@@ -28,7 +32,8 @@ services = ["smbd"]
 	help.fr = "Pour apparaitre ici, le répertoire doit être d'abord défini et la configuration sauvegardée."
 
 [main.main.unbrowseable]
-	ask = "List of invisible directories"
+	ask.en = "List of invisible directories"
+	ask.fr = "Liste des répertoires cachés"
 	type = "tags"
 	visible = "advanced"
 	icon = "folder"
