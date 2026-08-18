@@ -12,17 +12,25 @@ services = ["smbd"]
 	ask = "List of shared directories"
 	type = "tags"
 	optional = false
+	help.en = "Use space bar to define multiple directories at once. Use enter/return key to apply changes."
+	help.fr = "Pour définir plusieurs répertoires à la fois, utiliser la barre d'espace. Pour appliquer les changements, utiliser la touche entrée/retour à la ligne."
 
 [main.main.advanced]
-	ask = "Advanced parameter"
+	ask = "Advanced parameters"
 	type = "boolean"
 	
 [main.main.readonly_dir]
 	ask = "List of readonly directories"
 	type = "tags"
 	visible = "advanced"
+	icon = "folder"
+	help.en = "Directories must be first defined and the configuration saved before appearing here."
+	help.fr = "Pour apparaitre ici, le répertoire doit être d'abord défini et la configuration sauvegardée."
 
 [main.main.unbrowseable]
 	ask = "List of invisible directories"
 	type = "tags"
 	visible = "advanced"
+	icon = "folder"
+	help.en = "Directories must be first defined and the configuration saved before appearing here."
+	help.fr = "Pour apparaitre ici, le répertoire doit être d'abord défini et la configuration sauvegardée."
