@@ -5,4 +5,3 @@ Je comprends que cette application est uniquement destinée à des fins de rése
 - LDAP non connecté, usage des 'hook' (post_user_create, post_user_update) :
     - Les utilisateurs déjà existant, y compris l'administrateur, doivent changer leurs mots de passe pour accéder à Samba.
     - Lors du changement de mot de passe, les 'hook' affichent le mot de passe utilisateur dans les journaux (logs).
-- Les champs "List of readonly directories" et "List of unbrowseable directories" n'ont pas de liste d'autocompletion pré-populée et ne vérifient pas que les dossiers sont bien partagés.
