@@ -1,7 +1,9 @@
-Ce paquetage vous permet de créer des répertoires accessibles sur un réseau privé.
+Cette application vous permet de créer des dossiers accessibles sur un réseau privé.
 
-### Caractéristiques
+### Fonctionnalités
 
-- Créez et nommez vos répertoires ;
-- Configurez les permissions pour vos répertoires grâce à la vue des permissions de YunoHost ;
-- Définir des répertoires en lecture seule
+- Accéder aux dossiers utilisateurs;
+- Créer et nommer des dossiers partagés;
+- Configurer les permissions d'accès grâce à la gestion des permissions de YunoHost;
+- Définir des dossiers en lecture seule;
+- Définir des dossiers cachés

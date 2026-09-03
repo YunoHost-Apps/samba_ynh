@@ -8,6 +8,7 @@
 # (validation of several interdependent fields, specific getter/setter for a value,
 # display dynamic informations or choices, pre-loading of config type .cube... ).
 
+source _common.sh
 source /usr/share/yunohost/helpers
 
 data_dir=$(ynh_app_setting_get --key=data_dir)
@@ -25,6 +26,41 @@ write_smb_conf() {
 
 EOF
     cat $install_dir/smb.conf.d/*.conf >> $install_dir/smb.conf
+}
+
+validate__directories() {
+    declare -A errors=()
+    # errors_index is needed to ensure languages appearance order as associative arrays ($errors) can't be ordered by declared keys
+    local usernames=$(ynh_user_list) errors_index=("en" "fr") hasAlreadyUnauthorizedCharactersError hasAlreadyUsernameError message=""
+    for directory in $(echo $directories | sed "s/,/ /g"); do
+        if [[ ! "$directory" =~ ^[a-z0-9_]+$ && ! "${hasAlreadyUnauthorizedCharactersError-}" ]]; then
+            hasAlreadyUnauthorizedCharactersError=true
+            errors["en"]="- Directories names can only contain lowercase alphabetic characters, numbers and underscores.\n${errors["en"]-}"
+            errors["fr"]="- Les noms de dossiers ne peuvent contenir que des lettres, des chiffres et des tirets bas (_).\n${errors["fr"]-}"
+        fi
+        regex=\\b$directory\\b
+        if [[ "$usernames" =~ $regex && ! "${hasAlreadyUsernameError-}" ]]; then
+            hasAlreadyUsernameError=true
+            errors["en"]="${errors["en"]-}- Directories names can't be the same as a username.\nReminder: every user already gets, by default, a shared directory bearing its name.\n"
+            errors["fr"]="${errors["fr"]-}- Les dossiers ne peuvent porter le même nom qu'un utilisateur.\nRappel : Par défaut, chaque utilisateur bénéficie déjà d'un dossier partagé portant son nom.\n"
+        fi
+    done
+    if [[ ${#errors[@]} -ne 0 ]]; then
+        errors["en"]="<b>[EN]</b> The following errors were raised while saving your changes:\n${errors["en"]}"
+        errors["fr"]="<b>[FR]</b> La ou les erreurs suivantes ont été levées lors de la sauvegarde de vos modifications :\n${errors["fr"]}"
+        for key in "${errors_index[@]}"; do
+            message+="${errors[$key]}"
+        done
+        echo "$message"
+    fi
+}
+
+get__readonly_dir() {
+    get_tags_field_config "$directories" "$readonly_dir"
+}
+
+get__unbrowseable() {
+    get_tags_field_config "$directories" "$unbrowseable"
 }
 
 #=================================================
@@ -74,9 +110,14 @@ END
     done
 
     # Remove configuration for unlisted directories
-    for directory in $(find $install_dir/smb.conf.d/ -maxdepth 1 -type f -not -name '0-global.conf' -exec basename {} \;); do
-        if ! [[ "${directory%.conf}" =~ $(echo "^($(echo $directories | sed 's/,\| /|/g'))$") ]]; then
-            ynh_safe_rm "$install_dir/smb.conf.d/$directory"
+    for directory_config_file in $(find $install_dir/smb.conf.d/ -maxdepth 1 -type f -not -name '0-global.conf' -exec basename {} \;); do
+        directory_name="${directory_config_file%.conf}"
+        if ! [[ "$directory_name" =~ $(echo "^($(echo $directories | sed 's/,\| /|/g'))$") ]]; then
+            ynh_safe_rm "$install_dir/smb.conf.d/$directory_config_file"
+            clean_advanced_parameters "$directory_name"
+            # Updating settings is necessary as set__ functions call order is random.
+            ynh_app_setting_set --app="$app" --key=readonly_dir --value="$readonly_dir"
+            ynh_app_setting_set --app="$app" --key=unbrowseable --value="$unbrowseable"
         fi
     done
 
@@ -88,22 +129,12 @@ END
     ynh_app_setting_set --app="$app" --key=directories --value="$directories"
 }
 
-validate__directories() {
-    usernames=$(ynh_user_list)
-    for directory in $(echo $directories | sed "s/,/ /g"); do
-        if ! [[ "$directory" =~ ^[a-z0-9_]+$ ]]; then
-            echo "Directories names can contain lowercase alphabetic characters, numbers and underscore."
-            return 1
-        fi
-        regex=\\b$directory\\b
-        if [[ "$usernames" =~ $regex ]]; then
-            echo "Directories names can't be same as any username."
-            return 1
-        fi
-    done
-}
-
 set__readonly_dir() {
+    # Due to custom getters ynh considers that value changes every time even if it doesn't.
+    if [[ "$readonly_dir" = "$(ynh_app_setting_get --app="$app" --key=readonly_dir)" ]]
+    then
+        return
+    fi
     local value
     for directory in $(echo $directories | sed "s/,/ /g"); do
         value="no"
@@ -117,6 +148,11 @@ set__readonly_dir() {
 }
 
 set__unbrowseable() {
+    # Due to custom getters ynh considers that value changes every time even if it doesn't.
+    if [[ "$unbrowseable" = "$(ynh_app_setting_get --app="$app" --key=unbrowseable)" ]]
+    then
+        return
+    fi
     local value
     for directory in $(echo $directories | sed "s/,/ /g"); do
         value="yes"
