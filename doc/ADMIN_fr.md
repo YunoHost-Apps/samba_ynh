@@ -17,5 +17,5 @@ L'utilisateur peut accéder à son répertoire personnel au travers de son explo
 ---
 
 Notes :
-- Pour accéder aux répertoires, tous les paramètres sont optionnels à l'exception de "HÔTE_YUNOHOSTE". Il vous sera tout de même demandé de vous identifier.
+- Pour accéder aux répertoires, tous les paramètres sont optionnels à l'exception de "HÔTE_YUNOHOST". Il vous sera tout de même demandé de vous identifier.
 - Les répertoires cachés ne sont pas visibles mais restent accessibles en spécifiant le paramètre "RÉPERTOIRE_PARTAGÉ".
